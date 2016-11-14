@@ -145,5 +145,35 @@ RSpec.describe User, type: :model do
 
         expect(@user).to be nil
      end
+
+
+     it 'should return user if user enters credentials correctly with extra white space on email' do
+        user = User.new({
+        first_name: 'bob',
+        last_name: 'rocks',
+        password: 'apple',
+        password_confirmation: 'apple',
+        email: "bob@mail.com"
+        })
+        user.save
+        @user = User.authenticate_with_credentials(" bob@mail.com ", "apple")
+
+        expect(@user).to eql user
+     end
+
+
+     it 'should return user if user enters correct pw and correct email but with case difference' do
+        user = User.new({
+        first_name: 'bob',
+        last_name: 'rocks',
+        password: 'apple',
+        password_confirmation: 'apple',
+        email: "bob@mail.com"
+        })
+        user.save
+        @user = User.authenticate_with_credentials("Bob@MAil.com", "apple")
+
+        expect(@user).to eql user
+     end
   end
 end

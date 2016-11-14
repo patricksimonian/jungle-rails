@@ -14,7 +14,8 @@ private
 
   def self.authenticate_with_credentials(email, password)
     # try to find user
-     if user = User.find_by_email(email)
+    email = email.strip
+     if user = User.where("email = ?", email.downcase).first
         if user.authenticate(password)
           user
         end
