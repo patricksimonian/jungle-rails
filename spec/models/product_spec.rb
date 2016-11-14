@@ -55,6 +55,12 @@ RSpec.describe Product, type: :model do
         })
       expect(@product.save).to be false
     end
+
+    it 'will make errors when validations fail' do
+      @product = Product.new
+      @product.save
+      expect(@product.errors.full_messages.length).to be > 0
+    end
   end
 
 

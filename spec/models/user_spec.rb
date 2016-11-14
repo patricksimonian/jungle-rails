@@ -53,5 +53,16 @@ RSpec.describe User, type: :model do
       expect(@user2.save).to be false
     end
 
+    it 'should fail if email is not present' do
+      @user = User.new({
+        first_name: 'bob',
+        last_name: 'rocks',
+        password: 'apples',
+        password_confirmation: 'apples'
+        })
+
+      expect(@user.save).to be false
+    end
+
   end
 end
