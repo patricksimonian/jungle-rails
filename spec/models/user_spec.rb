@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
       expect(@user2.save).to be false
     end
 
-    it 'should fail if email is not unqiue and case insensitive' do
+    it 'should fail if email is not unique with different case' do
       @user1 = User.new({
         first_name: 'bob',
         last_name: 'rocks',
@@ -63,6 +63,44 @@ RSpec.describe User, type: :model do
 
       expect(@user.save).to be false
     end
+
+    it 'should fail if first_name is not present' do
+      @user = User.new({
+        last_name: 'rocks',
+        password: 'apples',
+        password_confirmation: 'apples',
+        email: "bob@mail.com"
+        })
+
+      expect(@user.save).to be false
+    end
+
+    it 'should fail if last_name is not present' do
+      @user = User.new({
+        first_name: 'bob',
+        password: 'apples',
+        password_confirmation: 'apples',
+        email: "bob@mail.com"
+        })
+
+      expect(@user.save).to be false
+    end
+
+    it 'should fail if password is less than 1 characters long' do
+      @user = User.new({
+        first_name: 'bob',
+        last_name: 'rocks',
+        password: 'a',
+        password_confirmation: 'a',
+        email: "bob@mail.com"
+        })
+
+      expect(@user.save).to be false
+    end
+
+  end
+
+  describe '.authenticate_with_credentials' do
 
   end
 end
