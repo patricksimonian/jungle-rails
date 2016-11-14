@@ -76,8 +76,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-      # Basic authentication
-  config.middleware.use '::Rack::Auth::Basic' do |u, p|
-    [u, p] == [ENV['ADMIN_USER'], ENV['ADMIN_PASSWORD']]
-  end
 end
