@@ -1,6 +1,11 @@
 class CartsController < ApplicationController
 
   def show
+    if !current_user.nil?
+
+    else
+      redirect_to root_path
+    end
   end
 
   def add_item
