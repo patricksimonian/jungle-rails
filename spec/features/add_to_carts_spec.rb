@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Vistor can navigates to product detail page when clicking on a product", type: :feature do
+RSpec.feature "Add to card", type: :feature do
     # SETUP
   before :each do
     @category = Category.create! name: 'Apparel'
@@ -15,10 +15,15 @@ RSpec.feature "Vistor can navigates to product detail page when clicking on a pr
 
   end
 
-  scenario 'when clicking on product they are navigated to detail page and see the product' do
+  scenario 'when clicking on add to cart the addtoCart on the navbar increases by 1' do
     visit root_path
-    click_on 'Details'
-    expect(page).to have_content @product.name
 
+    click_on "Add"
+
+    expect(page).to have_content 'My Cart (1)'
+  end
+  scenario 'addtoCart on the navbar to be 0' do
+    visit root_path
+    expect(page).to have_content 'My Cart (0)'
   end
 end
