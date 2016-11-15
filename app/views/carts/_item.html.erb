@@ -9,7 +9,13 @@
       <%= image_tag product.image.tiny %>
     </td>
     <td>
-      <h4><%= product.name %></h4>
+      <h4><%= product.name %>
+        <% if flash[:error_order] %>
+          <% flash[:error_order].each do |msg| %>
+           <p class="alert alert-warning"> <%= msg %> </p>
+          <% end %>
+        <% end %>
+      </h4>
       <br>
       <p><%= product.description %></p>
     </td>

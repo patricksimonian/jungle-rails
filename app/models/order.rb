@@ -16,7 +16,7 @@ class Order < ActiveRecord::Base
     has_inventory = true
     line_items.each do |l|
       if (l.product.quantity - l.quantity) < 0
-        errors.add(:order, "We only have #{l.product.quantity} of #{l.product.name} and cannot process your order")
+        errors.add(:order, " :We have #{l.product.quantity} quantity of #{l.product.name} (you asked for #{l.quantity}) therefore we cannot process your order")
       end
     end
     has_inventory

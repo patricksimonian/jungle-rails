@@ -14,7 +14,6 @@ class OrdersController < ApplicationController
   def create
     charge = perform_stripe_charge
     order  = create_order(charge)
-
     if order.valid?
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
@@ -59,8 +58,10 @@ class OrdersController < ApplicationController
         )
       end
     end
-    order.save!
-    order
+    if !order.save
+      flash[:error_order] = order.errors.full_messages
+    end
+      order
   end
 
   # returns total in cents not dollars (stripe uses cents as well)
