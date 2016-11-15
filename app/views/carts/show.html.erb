@@ -44,7 +44,7 @@
           data-name="Jungle"
           data-description="Your Order"
           data-locale="auto"
-          data-email="<%= current_user.email %>"
+          data-email= <%= current_user ? current_user.email : 'default@mail.com' %>
           data-currency="cad">
         </script>
       <% end %>
