@@ -82,10 +82,9 @@ class OrdersController < ApplicationController
 
       # will add validitaion so you cannot produce a negative
       # product quantity later
-      p.Update(quantity: (p.quantity - lq))
+      p.update(quantity: (p.quantity - lq))
 
     end
-
   end
 
 end

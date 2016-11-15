@@ -51,11 +51,12 @@ RSpec.describe Order, type: :model do
       @product1.reload
       @product2.reload
       # 5. use RSpec expect syntax to assert their new quantity values
-      expect(@product1.quantity).to eql (@product3.quantity - 2)
+      expect(@product1.quantity).to eql (@order.line_items.first.quantity)
     end
     # pending test 2
-    xit 'does not deduct quantity from products that are not in the order' do
+    it 'does not deduct quantity from products that are not in the order' do
       # TODO: Implement based on hints in previous test
+      expect(@product3.quantity).to be @product3.quantity
     end
   end
 end
