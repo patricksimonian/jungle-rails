@@ -58,5 +58,23 @@ RSpec.describe Order, type: :model do
       # TODO: Implement based on hints in previous test
       expect(@product3.quantity).to be @product3.quantity
     end
+
+    it 'does not complete order if quantity desired of product is greater then product quantity' do
+      @order = Order.new(email: 'test@test.com',
+        total_cents: (@product1.price),
+        stripe_charge_id: 999 # returned by stripe)
+        )
+        # 2. build line items on @order
+        @order.line_items.new( product: @product1,
+          quantity: 10,
+          item_price: @product1.price,
+          total_price: @product1.price * 2
+          )
+
+
+        # @product1.reload
+
+        expect(@order.save).to be false
+    end
   end
 end
