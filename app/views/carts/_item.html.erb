@@ -27,9 +27,13 @@
         -
       <% end %>
       <%= quantity %>
-      <%= link_to add_item_cart_path(product_id: product_id), class: 'btn btn-xs btn-success', method: :put do %>
-        +
-      <% end %>
+      <% if quantity < product.quantity %>
+        <%= link_to add_item_cart_path(product_id: product_id), class: 'btn btn-xs btn-success', method: :put do %>
+          +
+        <% end %>
+     <% else %>
+     no more stock left!
+     <% end %>
     </td>
     <td>
       <%= item_total %>

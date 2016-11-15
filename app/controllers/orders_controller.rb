@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
     order  = create_order(charge)
     if order.valid?
       empty_cart!
+      byebug
       redirect_to order, notice: 'Your Order has been placed.'
     else
       redirect_to cart_path, error: order.errors.full_messages.first
