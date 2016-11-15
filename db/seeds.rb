@@ -14,10 +14,10 @@ def open_asset(file_name)
 end
 
 # Only run on development (local) instances not on production, etc.
-unless Rails.env.development?
-  puts "Development seeds only (for now)!"
-  exit 0
-end
+# unless Rails.env.development?
+#   puts "Development seeds only (for now)!"
+#   exit 0
+# end
 
 # Let's do this ...
 
@@ -133,56 +133,56 @@ cat3.products.create!({
   price: 2_483.75
 })
 ## USERS
-puts "Creating Users..."
+# puts "Creating Users..."
 
-User.create!({
-  first_name: "Bob",
-  last_name: "Doe",
-  password: "aa",
-  email: "bobdoe@gmail.com"
-})
+# User.create!({
+#   first_name: "Bob",
+#   last_name: "Doe",
+#   password: "aa",
+#   email: "bobdoe@gmail.com"
+# })
 
-User.create!({
-  first_name: "John",
-  last_name: "Doe",
-  password: "aa",
-  email: "johndoe@gmail.com"
-})
-## REVIEW
-Review.destroy_all
-puts "Creating reviews.."
-Review.create!({
-  product_id: 1,
-  user_id: 1,
-  description: "Hey i like this",
-  rating: 4,
-})
+# User.create!({
+#   first_name: "John",
+#   last_name: "Doe",
+#   password: "aa",
+#   email: "johndoe@gmail.com"
+# })
+# ## REVIEW
+# Review.destroy_all
+# puts "Creating reviews.."
+# Review.create!({
+#   product_id: 1,
+#   user_id: 1,
+#   description: "Hey i like this",
+#   rating: 4,
+# })
 
-Review.create!({
-  product_id: 2,
-  user_id: 2,
-  description: " Yeah! this is ocol!",
-  rating: 4,
-})
+# Review.create!({
+#   product_id: 2,
+#   user_id: 2,
+#   description: " Yeah! this is cool!",
+#   rating: 4,
+# })
 
-Review.create!({
-  product_id: 3,
-  user_id: 1,
-  description: "I dont like this",
-  rating: 0,
-})
+# Review.create!({
+#   product_id: 3,
+#   user_id: 1,
+#   description: "I dont like this",
+#   rating: 0,
+# })
 
-Review.create!({
-  product_id: 2,
-  user_id: 1,
-  description: "Hey i like this yess!",
-  rating: 5,
-})
+# Review.create!({
+#   product_id: 2,
+#   user_id: 1,
+#   description: "Hey i like this yess!",
+#   rating: 5,
+# })
 
-Review.create!({
-  product_id: 1,
-  user_id: 2,
-  description: "Cats!",
-  rating: 4,
-})
+# Review.create!({
+#   product_id: 1,
+#   user_id: 2,
+#   description: "Cats!",
+#   rating: 4,
+# })
 puts "DONE!"
