@@ -4,8 +4,8 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     respond_to do |format|
        # Tell the UserMailer to send a order reciept after save (sends to terminal)
-      UserMailer.order_receipt(@order).deliver_now
-      format.json {render json: @order, status: :created, location: @user}
+      # UserMailer.order_receipt(@order).deliver_now
+      # format.json {render json: @order, status: :created, location: @user}
       # render order show view
       format.html {@order}
     end
@@ -14,7 +14,6 @@ class OrdersController < ApplicationController
   def create
     charge = perform_stripe_charge
     order  = create_order(charge)
-
     if order.valid?
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
@@ -37,7 +36,7 @@ class OrdersController < ApplicationController
     Stripe::Charge.create(
       source:      params[:stripeToken],
       amount:      cart_total, # in cents
-      description: "Khurram Virani's Jungle Order",
+      description: "Patrick Simonian's Jungle Order",
       currency:    'cad'
     )
   end
@@ -59,8 +58,10 @@ class OrdersController < ApplicationController
         )
       end
     end
-    order.save!
-    order
+    if !order.save
+      flash[:error_order] = order.errors.full_messages
+    end
+      order
   end
 
   # returns total in cents not dollars (stripe uses cents as well)
@@ -73,5 +74,7 @@ class OrdersController < ApplicationController
     end
     total
   end
+
+
 
 end
