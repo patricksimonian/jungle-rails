@@ -40,7 +40,7 @@
 
         <div class="form-group">
           <%= form.label :quantity %>
-          <%= form.number_field :quantity, class: 'form-control' %>
+          <%= form.number_field :quantity, in: 1..1000000, class: 'form-control' %>
         </div>
 
         <div class="form-group">
