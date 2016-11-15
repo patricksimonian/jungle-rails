@@ -10,7 +10,7 @@
       <%= render 'item', line_items: @order.line_items%>
     </table>
     <span>Total Items: <%= @order.line_items.count %> </span>
-    <span>Total Sale: <%= @order.total_cents %></span>
+    <span>Total Sale: <%= number_to_currency(@order.total_cents/100.00) %></span>
     <span> Email: <%= @order.email %></span>
   </div>
 
