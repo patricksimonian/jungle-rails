@@ -60,6 +60,7 @@ class OrdersController < ApplicationController
       end
     end
     order.save!
+    adjust_product_quantity(order)
     order
   end
 
@@ -72,6 +73,19 @@ class OrdersController < ApplicationController
       end
     end
     total
+  end
+
+  def adjust_product_quantity(order)
+    order.line_items.each do |lineItem|
+      p = lineItem.product
+      lq = lineItem.quantity
+
+      # will add validitaion so you cannot produce a negative
+      # product quantity later
+      p.Update(quantity: (p.quantity - lq))
+
+    end
+
   end
 
 end
