@@ -12,6 +12,7 @@ class Admin::CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
+
   end
 
   def create
@@ -23,7 +24,11 @@ class Admin::CategoriesController < ApplicationController
       render :new
     end
   end
-
+  def update
+   category = Category.find(params[:id])
+   category.update(category_params)
+   redirect_to [:admin, :categories]
+  end
   private
 
   def category_params
