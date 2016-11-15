@@ -13,9 +13,13 @@ class Order < ActiveRecord::Base
   private
 
   def has_inventory_for_product
+    has_inventory = true
     line_items.each do |l|
-      (l.product.quantity - l.quantity) >= 0
+      if (l.product.quantity - l.quantity) < 0
+        errors.add(:order, "We only have #{l.product.quantity} of #{l.product.name} and cannot process your order")
+      end
     end
+    has_inventory
   end
 
   def adjust_product_quantity
