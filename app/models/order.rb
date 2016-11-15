@@ -24,12 +24,12 @@ class Order < ActiveRecord::Base
 
   def adjust_product_quantity
     line_items.each do |lineItem|
-      p = lineItem.product
+      product = lineItem.product
       lq = lineItem.quantity
 
       # will add validitaion so you cannot produce a negative
       # product quantity later
-      p.update(quantity: (p.quantity - lq))
+      product.update(quantity: (product.quantity - lq))
 
     end
   end

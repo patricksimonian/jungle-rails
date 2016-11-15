@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Vistor can navigates to product detail page when clicking on a product", type: :feature do
+RSpec.feature "Vistor can navigates to product detail page when clicking on a product", type: :feature, js:true do
     # SETUP
   before :each do
     @category = Category.create! name: 'Apparel'
@@ -19,6 +19,7 @@ RSpec.feature "Vistor can navigates to product detail page when clicking on a pr
     visit root_path
     click_on 'Details'
     expect(page).to have_content @product.name
+    save_screenshot
 
   end
 end
