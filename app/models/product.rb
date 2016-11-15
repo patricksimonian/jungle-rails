@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   has_many :reviews, :dependent => :delete_all
-  has_many :line_items, :dependent => :delete
+  has_many :line_items, :dependent => :destroy
   monetize :price_cents, numericality: true
   mount_uploader :image, ProductImageUploader
 
