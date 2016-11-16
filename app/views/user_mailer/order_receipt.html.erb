@@ -11,7 +11,7 @@
     <h1><br> Quantity:    Product:</h1>
     <%= render 'item', line_items: @order.line_items%>
     <h4>Total Items: <%= @order.line_items.count %> </h4>
-    <h4>Total Sale: <%= @order.total_cents %></h4>
+    <h4>Total Sale: <%= number_to_currency(@order.total_cents/100.00) %></h4>
     <p>Please do not reply to this email!</p>
   </body>
 </html>
