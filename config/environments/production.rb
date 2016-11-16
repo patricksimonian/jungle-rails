@@ -78,4 +78,15 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   # make secret base for puma
   config.secret_key_base = ENV['SECRET_KEY_BASE']
+
+  # mailgun
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => ENV['MAILGUN_SMTP_SERVER'],
+    :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
+    :password       => ENV['MAILGUN_SMTP_PASSWORD'],
+    :domain         => 'https://fast-fortress-80919.herokuapp.com/', #eg: 'yourappname.herokuapp.com'
+    :authentication => :plain,
+  }
 end

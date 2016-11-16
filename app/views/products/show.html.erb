@@ -25,7 +25,12 @@
           <dt>Avg. Rating</dt>
           <dd><%= (number_with_precision @product.reviews.average(:rating), precision: 2) || '0' %>/5 </dd>
           <% if !current_user.nil? %>
-          <button class='btn btn-primary' id="review-form-toggle">Review</button>
+            <button class='btn btn-primary' id="review-form-toggle">Review</button>
+          <% else %>
+
+           <p class="alert alert-info review-msg-badge">
+             login in to review and rate this!
+           </p>
           <% end %>
         </dl>
       </div>
